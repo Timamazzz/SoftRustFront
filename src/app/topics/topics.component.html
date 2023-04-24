@@ -1,1 +1,48 @@
-<p>topics works!</p>
+<h1>Topics</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Name</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let topic of topics">
+    <ng-template [ngTemplateOutlet]="loadTemplate(topic)!"
+                 [ngTemplateOutletContext]="{ $implicit: topic}">
+    </ng-template>
+  </tr>
+  </tbody>
+</table>
+<div>{{statusMessage}}</div>
+
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-topic>
+  <td>{{topic.id}}</td>
+  <td>{{topic.name}}</td>
+  <td>
+    <input type="button" value="Изменить" class="btn btn-default" (click)="editTopic(topic)" />
+  </td>
+  <td>
+    <input type="button" value="Удалить" (click)="deleteTopic(topic)" class="btn btn-danger" />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input type="text" [(ngModel)]="editedTopic!.id" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="editedTopic!.name" class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="Сохранить" (click)="saveTopic()" class="btn btn-success" />
+  </td>
+  <td>
+    <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+  </td>
+</ng-template>
