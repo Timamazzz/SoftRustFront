@@ -1,0 +1,78 @@
+<h1>Messages</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <td>Id</td>
+    <td>Contact Id</td>
+    <td>Contact Name</td>
+    <td>Email</td>
+    <td>Phone</td>
+    <td>Text</td>
+    <td>Topic Id</td>
+    <td>Topic Name</td>
+    <td></td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let message of messages">
+    <ng-template [ngTemplateOutlet]="loadTemplate(message)!"
+                 [ngTemplateOutletContext]="{ $implicit: message}">
+    </ng-template>
+  </tr>
+  </tbody>
+</table>
+<div>{{statusMessage}}</div>
+
+
+<!--шаблон для чтения-->
+<ng-template #readOnlyTemplate let-message>
+  <td>{{message.id}}</td>
+  <td>{{message.contactId}}</td>
+  <td>{{message.contactName}}</td>
+  <td>{{message.email}}</td>
+  <td>{{message.phone}}</td>
+  <td>{{message.text}}</td>
+  <td>{{message.topicId}}</td>
+  <td>{{message.topicName}}</td>
+  <td>
+    <input type="button" value="Изменить" class="btn btn-default" (click)="edit(message)" />
+  </td>
+  <td>
+    <input type="button" value="Удалить" (click)="delete(message)" class="btn btn-danger" />
+  </td>
+</ng-template>
+
+<!--шаблон для редактирования-->
+<ng-template #editTemplate>
+  <td>
+    <input type="text" [(ngModel)]="edited!.id" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.contactId" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.contactName" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="email" [(ngModel)]="edited!.email" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="tel" [(ngModel)]="edited!.phone" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.text" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.topicId" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.topicName" readonly disabled class="form-control" />
+  </td>
+  <td>
+    <input type="button" value="Сохранить" (click)="update()" class="btn btn-success" />
+  </td>
+  <td>
+    <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+  </td>
+</ng-template>

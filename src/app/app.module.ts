@@ -10,6 +10,8 @@ import {TopicService} from "./services/TopicService";
 import {FormsModule} from "@angular/forms";
 import { ContactsComponent } from './contacts/contacts.component';
 import {ContactService} from "./services/ContactService";
+import { MessagesComponent } from './messages/messages.component';
+import {MessageService} from "./services/MessageService";
 
 
 // определение маршрутов
@@ -17,6 +19,7 @@ const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'topics', component: TopicsComponent},
   { path: 'contacts', component: ContactsComponent},
+  { path: 'messages', component: MessagesComponent},
 ];
 
 @NgModule({
@@ -24,7 +27,8 @@ const appRoutes: Routes =[
     AppComponent,
     HomeComponent,
     TopicsComponent,
-    ContactsComponent
+    ContactsComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +36,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     FormsModule
   ],
-  providers: [TopicService, ContactService],
+  providers: [TopicService, ContactService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
