@@ -1,17 +1,19 @@
-<h1>Topics</h1>
+<h1>Contacts</h1>
 <table class="table table-striped">
   <thead>
   <tr>
     <td>Id</td>
     <td>Name</td>
+    <td>Email</td>
+    <td>Phone</td>
     <td></td>
     <td></td>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let topic of topics">
-    <ng-template [ngTemplateOutlet]="loadTemplate(topic)!"
-                 [ngTemplateOutletContext]="{ $implicit: topic}">
+  <tr *ngFor="let contact of contacts">
+    <ng-template [ngTemplateOutlet]="loadTemplate(contact)!"
+                 [ngTemplateOutletContext]="{ $implicit: contact}">
     </ng-template>
   </tr>
   </tbody>
@@ -20,14 +22,16 @@
 
 
 <!--шаблон для чтения-->
-<ng-template #readOnlyTemplate let-topic>
-  <td>{{topic.id}}</td>
-  <td>{{topic.name}}</td>
+<ng-template #readOnlyTemplate let-contact>
+  <td>{{contact.id}}</td>
+  <td>{{contact.name}}</td>
+  <td>{{contact.email}}</td>
+  <td>{{contact.phone}}</td>
   <td>
-    <input type="button" value="Изменить" class="btn btn-default" (click)="edit(topic)" />
+    <input type="button" value="Изменить" class="btn btn-default" (click)="edit(contact)" />
   </td>
   <td>
-    <input type="button" value="Удалить" (click)="delete(topic)" class="btn btn-danger" />
+    <input type="button" value="Удалить" (click)="delete(contact)" class="btn btn-danger" />
   </td>
 </ng-template>
 
@@ -38,6 +42,12 @@
   </td>
   <td>
     <input type="text" [(ngModel)]="edited!.name" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.email" class="form-control" />
+  </td>
+  <td>
+    <input type="text" [(ngModel)]="edited!.phone" class="form-control" />
   </td>
   <td>
     <input type="button" value="Сохранить" (click)="update()" class="btn btn-success" />

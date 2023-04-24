@@ -8,19 +8,23 @@ import { TopicsComponent } from './topics/topics.component';
 import { HomeComponent } from './home/home.component';
 import {TopicService} from "./services/TopicService";
 import {FormsModule} from "@angular/forms";
+import { ContactsComponent } from './contacts/contacts.component';
+import {ContactService} from "./services/ContactService";
 
 
 // определение маршрутов
 const appRoutes: Routes =[
   { path: '', component: HomeComponent},
   { path: 'topics', component: TopicsComponent},
+  { path: 'contacts', component: ContactsComponent},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TopicsComponent
+    TopicsComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     FormsModule
   ],
-  providers: [TopicService],
+  providers: [TopicService, ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

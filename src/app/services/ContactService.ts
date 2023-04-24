@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Topic} from "../classes/topic";
+import {Contact} from "../classes/contact";
 
 @Injectable()
-export class TopicService {
+export class ContactService {
 
-  private url = "https://localhost:7249/Topic/";
+  private url = "https://localhost:7249/Contact/";
 
   constructor(private http: HttpClient){ }
 
@@ -13,11 +13,11 @@ export class TopicService {
     return this.http.get(this.url + "getall")
   }
 
-  update(topic: Topic) {
+  update(contact: Contact) {
     const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-    return this.http.put<Topic>(this.url, JSON.stringify(topic), {headers:myHeaders});
+    return this.http.put<Contact>(this.url, JSON.stringify(contact), {headers:myHeaders});
   }
   delete(id?: number){
-    return this.http.delete<Topic>(this.url + id);
+    return this.http.delete<Contact>(this.url + id);
   }
 }

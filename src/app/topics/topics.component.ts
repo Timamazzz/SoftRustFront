@@ -11,7 +11,7 @@ export class TopicsComponent implements OnInit {
   @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>|undefined;
   @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>|undefined;
 
-  editedTopic: Topic|null = null;
+  edited: Topic|null = null;
   topics: Array<Topic>;
   statusMessage: string = "";
 
@@ -20,43 +20,42 @@ export class TopicsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadTopics();
+    this.load();
   }
 
-  private loadTopics() {
-    this.topicService.getTopics().subscribe((data: any) => {
-      console.log(data);
+  private load() {
+    this.topicService.get().subscribe((data: any) => {
       this.topics = data;
     });
   }
 
-  editTopic(topic: Topic) {
-    this.editedTopic = new Topic(topic.id, topic.name);
+  edit(topic: Topic) {
+    this.edited = new Topic(topic.id, topic.name);
   }
 
   loadTemplate(topic: Topic) {
-    if (this.editedTopic && this.editedTopic.id === topic.id) {
+    if (this.edited && this.edited.id === topic.id) {
       return this.editTemplate;
     } else {
       return this.readOnlyTemplate;
     }
   }
 
-  saveTopic() {
-      this.topicService.updateTopic(this.editedTopic as Topic).subscribe(_ => {
+  update() {
+      this.topicService.update(this.edited as Topic).subscribe(_ => {
         this.statusMessage = 'Данные успешно обновлены'
-          this.loadTopics();
+          this.load();
       });
-      this.editedTopic = null;
+      this.edited = null;
     }
   cancel() {
-    this.editedTopic = null;
+    this.edited = null;
   }
 
-  deleteTopic(topic: Topic) {
-    this.topicService.deleteTopic(topic.id).subscribe(_ => {
+  delete(topic: Topic) {
+    this.topicService.delete(topic.id).subscribe(_ => {
       this.statusMessage = 'Данные успешно удалены'
-        this.loadTopics();
+        this.load();
     });
   }
 }
