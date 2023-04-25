@@ -1,0 +1,49 @@
+<h1>Создание письма</h1>
+<form class="form-container" [formGroup]="data" (ngSubmit)="submitData()">
+  <div class="form-header">
+    Напишиите нам!
+  </div>
+
+  <div class="component">
+    <label class="component-label" for="contactName">Ваше имя:</label>
+    <input id="contactName" class="component-item" type="text" formControlName="contactName"
+           [ngClass]="{ error: this.data.controls.contactName.errors && (this.data.controls.contactName.touched || submitFlag) }">
+  </div>
+
+  <div class="component">
+    <label class="component-label" for="email">Ваш Email:</label>
+    <input id="email" class="component-item" type="email" formControlName="Email"
+           [ngClass]="{error: this.data.controls.Email.errors && (this.data.controls.Email.touched || submitFlag)}">
+  </div>
+
+  <div class="component">
+    <label class="component-label" for="phone">Ваш телефон:</label>
+    <input id="phone" class="component-item" type="text" formControlName="Phone" prefix="+7" mask="(000)-000-00-00"
+           [ngClass]="{error: this.data.controls.Phone.errors && (this.data.controls.Phone.touched || submitFlag)}">
+  </div>
+
+  <div class="component">
+    <label class="component-label" for="topics">Тема:</label>
+    <div class="topic-select-container">
+      <select id="topics" class="component-item" formControlName="TopicId"
+              [ngClass]="{error: this.data.controls.TopicId.errors && (this.data.controls.TopicId.touched || submitFlag)}">
+        <option *ngFor="let topic of topics" value="{{topic.id}}">{{topic.name}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="component">
+    <label class="component-label" for="text">Сообщение:</label>
+    <textarea id="text" class="component-item" rows="5" cols="33" formControlName="Text"
+              [ngClass]="{error: this.data.controls.Text.errors && (this.data.controls.Text.touched || submitFlag)}"></textarea>
+  </div>
+
+    <form [formGroup]="FormGroup" class="capcha-form">
+      <ngx-recaptcha2 #captchaElem
+                      [siteKey]="siteKey"
+                      (success)="recaptchaSub()"
+                      formControlName="recaptcha">
+      </ngx-recaptcha2>
+    </form>
+  <button id="form-button" type="submit">Отправить данные</button>
+</form>

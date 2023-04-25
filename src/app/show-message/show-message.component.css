@@ -1,0 +1,23 @@
+.container {
+  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+.component {
+  display: flex;
+  flex-direction: column;
+  width: 460px;
+  align-items: center;
+}
+.contact {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 460px;
+}
+

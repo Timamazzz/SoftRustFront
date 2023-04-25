@@ -1,10 +1,10 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {Message} from "../classes/message";
+import {Message} from "../models/message";
 import {MessageService} from "../services/MessageService";
 import {TopicService} from "../services/TopicService";
 import {ContactService} from "../services/ContactService";
-import {Contact} from "../classes/contact";
-import {Topic} from "../classes/topic";
+import {Contact} from "../models/contact";
+import {Topic} from "../models/topic";
 
 @Component({
   selector: 'app-messages',

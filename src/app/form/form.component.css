@@ -1,0 +1,59 @@
+.form-container {
+  border: 2px solid gray;
+  border-radius: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  height: 50%;
+}
+
+.form-header {
+  padding: 2.5%;
+  background: #020202;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 10px 10px 0 0;
+}
+
+.component {
+  display: flex;
+  justify-content: space-between;
+  margin: 2.5%;
+}
+
+.component-label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.topic-select-container{
+  display: flex;
+  flex-direction: column;
+
+}
+#text {
+  height: 80px;
+  width: 60%;
+}
+
+.capcha-form {
+  height: 35%;
+  overflow: hidden;
+  align-self: center;
+}
+
+#form-button {
+  width: 30%;
+  align-self: center;
+  margin: 2.5%;
+}
+
+.error {
+  border: 1px solid red;
+}
+
+
+
+
