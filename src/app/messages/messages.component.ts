@@ -1,6 +1,10 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Message} from "../classes/message";
 import {MessageService} from "../services/MessageService";
+import {TopicService} from "../services/TopicService";
+import {ContactService} from "../services/ContactService";
+import {Contact} from "../classes/contact";
+import {Topic} from "../classes/topic";
 
 @Component({
   selector: 'app-messages',
@@ -13,14 +17,34 @@ export class MessagesComponent implements OnInit {
 
   edited: Message|null = null;
   messages: Array<Message>;
+  contacts: Array<Contact>;
+  topics: Array<Topic>;
   statusMessage: string = "";
 
-  constructor(private messageService: MessageService){
+  constructor(private messageService: MessageService, private contactService: ContactService, private topicService: TopicService){
     this.messages = new Array<Message>();
+    this.contacts = new Array<Message>();
+    this.topics = new Array<Message>();
+
   }
 
   ngOnInit() {
+    this.loadContacts();
+    this.loadTopics();
     this.load();
+  }
+
+  private loadContacts() {
+    this.contactService.get().subscribe((data: any) => {
+      this.contacts = data;
+      console.log(this.contacts);
+    });
+  }
+
+  private loadTopics() {
+    this.topicService.get().subscribe((data: any) => {
+      this.topics = data;
+    });
   }
 
   private load() {
